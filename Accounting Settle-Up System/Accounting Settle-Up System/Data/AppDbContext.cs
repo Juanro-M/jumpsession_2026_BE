@@ -20,13 +20,10 @@ public class AppDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Configure UserGroup composite key (if still using composite, 
-        // though BaseEntity adds an Id, often junction tables use composite or keep Id)
-        // I'll keep the composite key as it's standard for junctions.
+
         modelBuilder.Entity<UserGroup>()
             .HasKey(ug => new { ug.GroupId, ug.UserId });
 
-        // Configure navigation properties for UserGroup
         modelBuilder.Entity<UserGroup>()
             .HasOne(ug => ug.Group)
             .WithMany(g => g.UserGroups)
@@ -37,14 +34,12 @@ public class AppDbContext : DbContext
             .WithMany(u => u.UserGroups)
             .HasForeignKey(ug => ug.UserId);
 
-        // Configure Expense - User relationship (PaidBy)
         modelBuilder.Entity<Expense>()
             .HasOne(e => e.PaidBy)
             .WithMany(u => u.ExpensesPaid)
             .HasForeignKey(e => e.PaidById)
             .OnDelete(DeleteBehavior.Restrict);
 
-        // Configure Payment relationships
         modelBuilder.Entity<Payment>()
             .HasOne(p => p.FromUser)
             .WithMany()
