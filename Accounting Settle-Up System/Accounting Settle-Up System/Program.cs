@@ -1,10 +1,14 @@
 using Accounting_Settle_Up_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer(); // Required for OpenAPI metadata generation
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -22,6 +26,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Accounting Settle-Up API v1"));
+    app.MapGet("/", () => Results.Redirect("/scalar"));
 }
 
 app.UseHttpsRedirection();
