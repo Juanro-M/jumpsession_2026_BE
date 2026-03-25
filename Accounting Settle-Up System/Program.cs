@@ -1,4 +1,6 @@
 using Accounting_Settle_Up_System.Data;
+using Accounting_Settle_Up_System.Interfaces;
+using Accounting_Settle_Up_System.Services;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 
@@ -17,12 +19,20 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 
 var app = builder.Build();
+
+// Ensure the database is created and migrated
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.EnsureCreated();
+}
 
 if (app.Environment.IsDevelopment())
 {
