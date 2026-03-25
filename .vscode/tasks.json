@@ -2,12 +2,22 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "kill-port",
+            "command": "powershell",
+            "type": "process",
+            "args": [
+                "-Command",
+                "Stop-Process -Name 'Accounting Settle-Up System' -Force -ErrorAction SilentlyContinue; Get-NetTCPConnection -LocalPort 5108 -ErrorAction SilentlyContinue | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }"
+            ]
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "process",
+            "dependsOn": "kill-port",
             "args": [
                 "build",
-                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
+                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +29,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
+                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -29,11 +39,12 @@
             "label": "watch",
             "command": "dotnet",
             "type": "process",
+            "dependsOn": "kill-port",
             "args": [
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj"
+                "${workspaceFolder}/Accounting Settle-Up System/Accounting Settle-Up System.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

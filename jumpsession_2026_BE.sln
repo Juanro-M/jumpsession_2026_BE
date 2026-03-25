@@ -4,7 +4,7 @@ VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Accounting Settle-Up System", "Accounting Settle-Up System", "{10CB8FA2-EF85-02BE-DA1B-C1635EA193FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting Settle-Up System", "Accounting Settle-Up System\Accounting Settle-Up System\Accounting Settle-Up System.csproj", "{A7264F03-1EC7-2DDE-ADB1-5596E8BA412E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting Settle-Up System", "Accounting Settle-Up System\Accounting Settle-Up System.csproj", "{A7264F03-1EC7-2DDE-ADB1-5596E8BA412E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
