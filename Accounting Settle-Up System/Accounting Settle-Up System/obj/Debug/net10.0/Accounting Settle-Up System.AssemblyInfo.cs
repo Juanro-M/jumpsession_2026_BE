@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Accounting Settle-Up System")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1044976f5a2bfdb8bcc2927791df3a42113ee100")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d170d4484f1f907aa796bff5b667e2f39be4edd")]
 [assembly: System.Reflection.AssemblyProductAttribute("Accounting Settle-Up System")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Accounting Settle-Up System")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

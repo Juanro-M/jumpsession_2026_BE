@@ -1,27 +1,19 @@
-# Accounting Settle-Up System
+# 📌 Accounting Settle-Up System
 
-## Tech Stack
-- .NET 10
-- Entity Framework Core 10
-- PostgreSQL
-- Swagger + Scalar
+A backend API for expense and group management, using **.NET 8**, **Entity Framework Core 8**, and **PostgreSQL**.
 
 ---
 
 ## Prerequisites
-- .NET 10 SDK
-- Docker
+
+- [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)  
+- [Docker](https://www.docker.com/) (for PostgreSQL container)  
+- Optional: IDE like Visual Studio, Rider, or VS Code  
 
 ---
 
-## Setup
-
-### 1. Start PostgreSQL
+## 1️⃣ Clone repository
 
 ```bash
-docker run --name postgres-db \
-  -e POSTGRES_USER=postgres \
-  -e POSTGRES_PASSWORD=postgres \
-  -e POSTGRES_DB=settleup \
-  -p 5432:5432 \
-  -d postgres
+git clone <your-repo-url>
+cd "Accounting Settle-Up System/Accounting Settle-Up System"

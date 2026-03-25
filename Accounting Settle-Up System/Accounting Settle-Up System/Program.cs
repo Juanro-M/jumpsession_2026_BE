@@ -1,12 +1,13 @@
 using Accounting_Settle_Up_System.Data;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers
 builder.Services.AddControllers();
 
-// Swagger (stable + required for Scalar too)
+// Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -23,9 +24,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
-    // Optional: Scalar (nicer UI)
-    app.MapScalarApiReference();
+    app.MapScalarApiReference(); // Optional UI
 }
 
 app.UseHttpsRedirection();
