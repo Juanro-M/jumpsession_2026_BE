@@ -97,10 +97,3 @@ docker rm postgres-db
 * Do not use .NET 10 / Npgsql 10 preview — migrations will fail due to missing EF Core APIs.
 
 ```
-
-This **stays as one Markdown file**, no broken sections, all commands inside fenced code blocks, ready to use in GitHub or VS Code.  
-
-If you want, I can also **combine this README with a full working .NET 8 project template** including `Program.cs`, `DbContext`, and entities, ready to run migrations immediately.  
-
-Do you want me to do that next?
-```
