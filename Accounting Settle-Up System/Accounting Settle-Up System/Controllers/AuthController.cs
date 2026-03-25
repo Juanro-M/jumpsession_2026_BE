@@ -18,28 +18,14 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
     {
-        var error = await _authService.RegisterAsync(registerDto);
-        if (error != null)
-        {
-            return BadRequest(error);
-        }
-
-        return Ok(new { message = "Registration successful" });
+        var result = await _authService.RegisterAsync(registerDto);
+        return result.Success ? Ok(result) : BadRequest(result);
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
     {
-        var user = await _authService.LoginAsync(loginDto);
-        if (user == null)
-        {
-            return Unauthorized("Invalid username or password.");
-        }
-
-        return Ok(new
-        {
-            message = "Login successful",
-            user
-        });
+        var result = await _authService.LoginAsync(loginDto);
+        return result.Success ? Ok(result) : Unauthorized(result);
     }
 }

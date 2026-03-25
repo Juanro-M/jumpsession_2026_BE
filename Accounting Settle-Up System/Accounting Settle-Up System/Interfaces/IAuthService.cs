@@ -1,10 +1,10 @@
+using Accounting_Settle_Up_System.Models;
 using Accounting_Settle_Up_System.Models.DTOs;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Accounting_Settle_Up_System.Interfaces;
 
 public interface IAuthService
 {
-    Task<string?> RegisterAsync(RegisterDto registerDto);
-    Task<object?> LoginAsync(LoginDto loginDto);
+    Task<AuthResult> RegisterAsync(RegisterDto registerDto);
+    Task<AuthResult> LoginAsync(LoginDto loginDto);
 }
