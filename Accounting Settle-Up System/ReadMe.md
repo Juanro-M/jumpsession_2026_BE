@@ -33,9 +33,18 @@ docker run --name postgres-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=pos
 ```json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Port=5432;Database=settleup;Username=postgres;Password=postgres"
-  }
+    "DefaultConnection": "Host=localhost;Database=accounting_settle_up;Username=admin;Password=admin"
+  },
+  "Logging": {
+
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
 }
+
 ```
 
 4. **Install EF Core CLI**
