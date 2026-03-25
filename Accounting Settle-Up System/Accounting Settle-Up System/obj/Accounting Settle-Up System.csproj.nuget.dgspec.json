@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/juanrorr/jumpsession_2026_BE/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj": {}
+    "C:\\jumpsession_2026_BE\\Accounting Settle-Up System\\Accounting Settle-Up System\\Accounting Settle-Up System.csproj": {}
   },
   "projects": {
-    "/Users/juanrorr/jumpsession_2026_BE/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj": {
+    "C:\\jumpsession_2026_BE\\Accounting Settle-Up System\\Accounting Settle-Up System\\Accounting Settle-Up System.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/juanrorr/jumpsession_2026_BE/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
+        "projectUniqueName": "C:\\jumpsession_2026_BE\\Accounting Settle-Up System\\Accounting Settle-Up System\\Accounting Settle-Up System.csproj",
         "projectName": "Accounting Settle-Up System",
-        "projectPath": "/Users/juanrorr/jumpsession_2026_BE/Accounting Settle-Up System/Accounting Settle-Up System/Accounting Settle-Up System.csproj",
-        "packagesPath": "/Users/juanrorr/.nuget/packages/",
-        "outputPath": "/Users/juanrorr/jumpsession_2026_BE/Accounting Settle-Up System/Accounting Settle-Up System/obj/",
+        "projectPath": "C:\\jumpsession_2026_BE\\Accounting Settle-Up System\\Accounting Settle-Up System\\Accounting Settle-Up System.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\jumpsession_2026_BE\\Accounting Settle-Up System\\Accounting Settle-Up System\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/juanrorr/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -44,19 +44,23 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
+            "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[10.0.5, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
               "suppressParent": "All",
               "target": "Package",
               "version": "[10.0.5, )"
             },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
-              "version": "[8.0.11, )"
+              "version": "[10.0.0-preview.1, )"
             },
             "Scalar.AspNetCore": {
               "target": "Package",
@@ -82,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.201/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
