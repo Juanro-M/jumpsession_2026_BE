@@ -25,7 +25,7 @@ cd "Accounting Settle-Up System/Accounting Settle-Up System"
 2. **Run PostgreSQL in Docker**
 
 ```bash
-docker run --name postgres-db -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=settleup -p 5432:5432 -d postgres
+docker run --name postgres-db -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=accounting_settle_up -p 5432:5432 -d postgres
 ```
 
 3. **Update `appsettings.json` connection string**
