@@ -4,28 +4,39 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Controllers
 builder.Services.AddControllers();
-
-// Swagger for API documentation
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// DbContext
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    ));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
 
 var app = builder.Build();
 
-// Dev tools
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.MapScalarApiReference(); // Optional UI
+    app.MapScalarApiReference();
+
+    var swaggerUrl = "https://localhost:5001/swagger";
+    var scalarUrl = "https://localhost:5001/scalar";
+    Console.WriteLine("-------------------------------------------------");
+    Console.WriteLine($"Swagger UI: {swaggerUrl}");
+    Console.WriteLine($"Scalar API Reference: {scalarUrl}");
+    Console.WriteLine("-------------------------------------------------");
 }
+app.UseSwagger(c =>
+{
+    c.RouteTemplate = "swagger/{documentName}/swagger.json";
+});
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Accounting API v1");
+    c.RoutePrefix = "swagger"; 
+});
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
