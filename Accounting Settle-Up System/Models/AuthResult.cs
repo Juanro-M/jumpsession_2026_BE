@@ -1,4 +1,4 @@
-namespace Accounting_Settle_Up_System.Models;
+namespace Accounting_Settle_Up_System.Models.DTOs;
 
 public class AuthResult
 {

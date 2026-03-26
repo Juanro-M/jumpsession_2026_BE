@@ -6,10 +6,7 @@ namespace Accounting_Settle_Up_System.Models.Entities;
 [Table("users")]
 public class User : BaseEntity
 {
-    [Column("name")]
-    [StringLength(100)]
-    public string Name { get; set; } = string.Empty;
-
+    
     [Column("username")]
     [StringLength(100)]
     public string Username { get; set; } = string.Empty;
@@ -23,6 +20,9 @@ public class User : BaseEntity
 
     [Column("first_login_attempt_failed")]
     public bool FirstLoginAttemptFailed { get; set; } = false;
+    [Column("name")]
+    [StringLength(100)]
+    public string Name { get; set; } = string.Empty;
 
     public virtual ICollection<UserGroup>? UserGroups { get; set; }
     public virtual ICollection<Expense>? ExpensesPaid { get; set; }
