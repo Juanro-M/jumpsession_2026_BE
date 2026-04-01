@@ -14,6 +14,7 @@ public class UserService(AppDbContext context) : IUserService
         return new UserDto
         {
          Id = targetUser.Id,
+         Username = targetUser.Username,
          Name = targetUser.Name,
          Email = targetUser.Email
         };
