@@ -3,12 +3,13 @@ using Accounting_Settle_Up_System.Interfaces;
 using Accounting_Settle_Up_System.Models;
 using Accounting_Settle_Up_System.Models.DTOs;
 using Accounting_Settle_Up_System.Models.Entities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using BC = BCrypt.Net.BCrypt;
 
 namespace Accounting_Settle_Up_System.Services;
 
-public class AuthService(AppDbContext context) : IAuthService
+public class AuthService(AppDbContext context, IConfiguration configuration) : IAuthService
 {
 
     public async Task<AuthResult> RegisterAsync(RegisterDto registerDto)
@@ -35,6 +36,31 @@ public class AuthService(AppDbContext context) : IAuthService
 
     public async Task<AuthResult> LoginAsync(LoginDto loginDto, CancellationToken cancellationToken)
     {
+        var devOptions = configuration.GetSection("DevOptions");
+        bool enableDefaultLogin = devOptions.GetValue<bool>("EnableDefaultLogin");
+
+        if (enableDefaultLogin)
+        {
+            var defaultUsername = devOptions.GetValue<string>("DefaultUsername");
+            var devUser = await context.Users.FirstOrDefaultAsync(u => u.Username == defaultUsername, cancellationToken);
+
+            if (devUser != null)
+            {
+                return new AuthResult
+                {
+                    Success = true,
+                    Message = "Development Auto-Login successful",
+                    Data = new
+                    {
+                        devUser.Id,
+                        devUser.Username,
+                        devUser.Name,
+                        devUser.Email
+                    }
+                };
+            }
+        }
+
         if (string.IsNullOrEmpty(loginDto.Username) || string.IsNullOrEmpty(loginDto.Password))
         {
             return new AuthResult { Success = false, Message = "Username and Password are required." };
