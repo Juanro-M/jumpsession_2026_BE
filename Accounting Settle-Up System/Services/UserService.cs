@@ -9,7 +9,8 @@ public class UserService(AppDbContext context) : IUserService
 {
      public async Task<UserDto> GetUserAsync(string email, CancellationToken cancellationToken)
     {
-        var targetUser = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email, cancellationToken) ?? throw new Exception("User not found via email");
+        var targetUser = await context.Users.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email, cancellationToken) 
+                        ?? throw new Exception("User not found via email");
 
         return new UserDto
         {
