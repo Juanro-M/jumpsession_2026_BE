@@ -9,8 +9,9 @@ namespace Accounting_Settle_Up_System.Controllers;
 public class UsersController(IUserService userService) : ControllerBase
 {
     [HttpGet]
-    public async Task<UserDto> GetUserByEmail([FromQuery] string email, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUserByEmail([FromQuery] string email, CancellationToken cancellationToken)
     {
-        return await userService.GetUserAsync(email, cancellationToken);
+        var user = await userService.GetUserAsync(email, cancellationToken);
+        return Ok(user);
     }
 }
