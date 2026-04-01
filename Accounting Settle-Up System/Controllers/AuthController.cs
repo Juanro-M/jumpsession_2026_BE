@@ -23,9 +23,9 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+    public async Task<IActionResult> Login([FromBody] LoginDto loginDto, CancellationToken cancellationToken)
     {
-        var result = await _authService.LoginAsync(loginDto);
+        var result = await _authService.LoginAsync(loginDto,cancellationToken);
         return result.Success ? Ok(result) : Unauthorized(result);
     }
 }

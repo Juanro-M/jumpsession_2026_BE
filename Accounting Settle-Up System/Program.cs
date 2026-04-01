@@ -6,9 +6,7 @@ using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Services
 builder.Services.AddControllers();
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -19,9 +17,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-// OpenAPI (instead of Swagger)
 builder.Services.AddOpenApi();
-
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
@@ -31,21 +27,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 var app = builder.Build();
 
-// Ensure DB is created
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.EnsureCreated();
 }
 
-// Dev-only API docs
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.MapScalarApiReference();
 }
 
-// Correct console logs
 app.Lifetime.ApplicationStarted.Register(() =>
 {
     var server = app.Services.GetRequiredService<Microsoft.AspNetCore.Hosting.Server.IServer>();
@@ -69,7 +62,5 @@ app.Lifetime.ApplicationStarted.Register(() =>
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

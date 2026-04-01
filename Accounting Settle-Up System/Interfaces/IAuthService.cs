@@ -6,5 +6,5 @@ namespace Accounting_Settle_Up_System.Interfaces;
 public interface IAuthService
 {
     Task<AuthResult> RegisterAsync(RegisterDto registerDto);
-    Task<AuthResult> LoginAsync(LoginDto loginDto);
+    Task<AuthResult> LoginAsync(LoginDto loginDto, CancellationToken cancellationToken);
 }

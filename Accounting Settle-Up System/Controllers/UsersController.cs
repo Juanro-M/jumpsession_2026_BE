@@ -8,10 +8,9 @@ namespace Accounting_Settle_Up_System.Controllers;
 [Route("api/[controller]")]
 public class UsersController(IUserService userService) : ControllerBase
 {
-     [HttpGet]
-    public async Task<UserDto> GetUserByEmail([FromQuery]string email, CancellationToken cancellationToken)
+    [HttpGet]
+    public async Task<UserDto> GetUserByEmail([FromQuery] string email, CancellationToken cancellationToken)
     {
-        return await userService.GetUserAsync(email,cancellationToken);
+        return await userService.GetUserAsync(email, cancellationToken);
     }
-    
 }

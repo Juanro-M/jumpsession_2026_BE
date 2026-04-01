@@ -33,7 +33,7 @@ public class AuthService(AppDbContext context) : IAuthService
         return new AuthResult { Success = true, Message = "Registration successful" };
     }
 
-    public async Task<AuthResult> LoginAsync(LoginDto loginDto)
+    public async Task<AuthResult> LoginAsync(LoginDto loginDto, CancellationToken cancellationToken)
     {
         if (string.IsNullOrEmpty(loginDto.Username) || string.IsNullOrEmpty(loginDto.Password))
         {
@@ -41,7 +41,7 @@ public class AuthService(AppDbContext context) : IAuthService
         }
 
         var user = await context.Users
-            .FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+            .FirstOrDefaultAsync(u => u.Username == loginDto.Username,cancellationToken);
 
         if (user == null || !BC.Verify(loginDto.Password, user.PasswordHash))
         {
