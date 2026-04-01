@@ -8,14 +8,8 @@ using BC = BCrypt.Net.BCrypt;
 
 namespace Accounting_Settle_Up_System.Services;
 
-public class AuthService : IAuthService
+public class AuthService(AppDbContext context) : IAuthService
 {
-    private readonly AppDbContext _context;
-
-    public AuthService(AppDbContext context)
-    {
-        _context = context;
-    }
 
     public async Task<AuthResult> RegisterAsync(RegisterDto registerDto)
     {
@@ -33,8 +27,8 @@ public class AuthService : IAuthService
             FirstLoginAttemptFailed = false
         };
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        context.Users.Add(user);
+        await context.SaveChangesAsync();
 
         return new AuthResult { Success = true, Message = "Registration successful" };
     }
@@ -46,7 +40,7 @@ public class AuthService : IAuthService
             return new AuthResult { Success = false, Message = "Username and Password are required." };
         }
 
-        var user = await _context.Users
+        var user = await context.Users
             .FirstOrDefaultAsync(u => u.Username == loginDto.Username);
 
         if (user == null || !BC.Verify(loginDto.Password, user.PasswordHash))
@@ -58,8 +52,8 @@ public class AuthService : IAuthService
         if (!user.FirstLoginAttemptFailed)
         {
             user.FirstLoginAttemptFailed = true;
-            _context.Users.Update(user);
-            await _context.SaveChangesAsync();
+            context.Users.Update(user);
+            await context.SaveChangesAsync();
             return new AuthResult { Success = false, Message = "Invalid username or password." }; // Trap failure
         }
 
